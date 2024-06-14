@@ -1,0 +1,17 @@
+{
+  "name": "joaof/joaof-router",
+  "description": "PHP Routeraa",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "joaof\\router\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "João Faust"
+    }
+  ],
+  "require": {}
+}
