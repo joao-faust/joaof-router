@@ -27,8 +27,26 @@ class Request
 
   private function buildFormData()
   {
-    $data = filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
-    return $data;
+    if (!isset($_SERVER['CONTENT_TYPE']))  {
+      return [];
+    }
+
+    $contentTypeArr = explode(',', $_SERVER['CONTENT_TYPE']);
+
+    foreach ($contentTypeArr as $contentType) {
+      switch ($contentType) {
+        case 'application/json':
+          $json = file_get_contents('php://input');
+          $data = json_decode($json, true);
+          $filtered = filter_var_array($data, FILTER_SANITIZE_SPECIAL_CHARS);
+          return $filtered;
+        case 'application/x-www-form-urlencoded':
+          $data = filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+          return $data;
+        default:
+          return [];
+      }
+    }
   }
 
   public function getMethod()  {
