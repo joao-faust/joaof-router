@@ -16,7 +16,7 @@ class Request
   {
     $this->method = $method;
     $this->params = $this->buildParams();
-    $this->formData = $this->buildFormData();
+    $this->formData = $this->buildData();
   }
 
   private function buildParams()
@@ -25,7 +25,7 @@ class Request
     return $data;
   }
 
-  private function buildFormData()
+  private function buildData()
   {
     if (!isset($_SERVER['CONTENT_TYPE']))  {
       return [];
@@ -67,7 +67,7 @@ class Request
   /**
    * @param string|null $inputName Input's name
    */
-  public function getFormData(string $inputName=null)
+  public function getData(string $inputName=null)
   {
     if (is_null($inputName)) {
       return $this->formData;
