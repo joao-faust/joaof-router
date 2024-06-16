@@ -21,23 +21,13 @@ class Request
 
   private function buildParams()
   {
-    $params = [];
-
-    foreach ($_GET as $key => $param) {
-      $params[$key] = htmlspecialchars($param);
-    }
-
-    return $params;
+    $data = filter_var_array($_GET, FILTER_SANITIZE_SPECIAL_CHARS);
+    return $data;
   }
 
   private function buildFormData()
   {
-    $data = [];
-
-    foreach ($_POST as $name => $inputVal) {
-      $data[$name] = htmlspecialchars($inputVal);
-    }
-
+    $data = filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
     return $data;
   }
 

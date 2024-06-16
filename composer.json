@@ -5,7 +5,8 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "joaof\\router\\": "src/"
+      "joaof\\router\\": "src/",
+      "test\\": "test/"
     }
   },
   "authors": [
